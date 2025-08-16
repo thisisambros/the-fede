@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "the-fede"
+version = "0.1.0"
+description = "Personal AI assistant bot - Telegram interface for Claude with MCP server integration"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-telegram-bot = "^21.0"
+anthropic = "^0.40.0"
+python-dotenv = "^1.0.0"
+pydantic = "^2.11.0"
+pydantic-settings = "^2.9.0"
+structlog = "^25.0.0"
+aiosqlite = "^0.21.0"
+aiofiles = "^24.0.0"
+claude-code-sdk = "^0.0.20"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-asyncio = "^1.0.0"
+black = "^25.0.0"
+mypy = "^1.16.0"
+ruff = "^0.9.0"
+
+[tool.poetry.scripts]
+fede = "main:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+asyncio_mode = "auto"
