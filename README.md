@@ -12,9 +12,12 @@ A sophisticated Telegram bot that leverages Claude Code SDK to provide a persona
 - ✅ **Pattern Learning**: Learns user patterns and suggests defaults (with confirmation)
 - ✅ **Single-User Security**: Restricted to authorized Telegram user ID
 
+### Integrated Services (via MCP)
+- ✅ **Google Calendar** - List and manage calendar events
+- ✅ **Gmail** - Read and search emails  
+- ✅ **WhatsApp** - Read and send messages to contacts and groups
+
 ### Planned
-- 📧 Gmail integration via MCP server
-- 📅 Google Calendar management
 - ✅ Custom todo list integration
 - 🔄 Enhanced action staging and confirmation workflow
 
@@ -62,6 +65,26 @@ A sophisticated Telegram bot that leverages Claude Code SDK to provide a persona
 - `/new` - Start a new conversation session
 - `/end` - End the current session
 - `/status` - Show session status
+- `/calendar` - Show upcoming calendar events
+
+### Natural Language Examples
+
+**Calendar:**
+- "What's on my calendar today?"
+- "Do I have any meetings tomorrow?"
+- "Show me my schedule for next week"
+
+**Gmail:**
+- "Check my email"
+- "Do I have any unread emails?"
+- "Show me emails from John"
+- "Search my emails for invoice"
+
+**WhatsApp:**
+- "Check my WhatsApp messages"
+- "Send a WhatsApp to Mom saying I'll be late"
+- "What did Sarah send me on WhatsApp?"
+- "Show my recent WhatsApp chats"
 
 ### Sending Images
 
@@ -99,18 +122,40 @@ The bot is designed to be extremely careful about taking actions:
 | `LOG_LEVEL` | Logging level | INFO |
 | `DEBUG` | Enable debug mode | false |
 
-### MCP Server Integration (Future)
+## MCP Server Integrations
 
-To enable Gmail MCP server (when ready):
+The bot uses Model Context Protocol (MCP) servers to integrate with external services. All MCP servers are automatically enabled.
 
-1. Install the Gmail MCP server:
-   ```bash
-   npx -y @smithery/cli install @gongrzhe/server-gmail-autoauth-mcp --client claude
-   ```
+### Google Calendar
+Already configured and authenticated. The bot can:
+- List upcoming events with `/calendar`
+- Check your schedule
+- Answer questions about your calendar
 
-2. Set `MCP_GMAIL_ENABLED=true` in your `.env` file
+### Gmail
+Already configured and authenticated. The bot can:
+- Search and read emails
+- Check for unread messages
+- Find emails from specific senders
+- Search emails by date or content
 
-3. Configure Gmail OAuth credentials
+### WhatsApp 
+To set up WhatsApp integration:
+
+1. **First-time authentication**:
+   - Send any WhatsApp-related command to the bot
+   - A QR code will be displayed in the bot logs
+   - Scan with WhatsApp mobile app (Settings → Linked Devices)
+   - Authentication persists for ~20 days
+
+2. **Available features**:
+   - Search and read WhatsApp messages
+   - Send messages to contacts and groups
+   - Search contacts
+   - Get chat history
+   - Send files and audio messages
+
+**Note**: Instead of UV (as suggested in the original WhatsApp MCP docs), this bot uses Poetry for Python dependency management. The WhatsApp bridge is pre-built and located at `~/bin/whatsapp-bridge`.
 
 ## Project Structure
 

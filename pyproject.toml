@@ -18,6 +18,9 @@ structlog = "^25.0.0"
 aiosqlite = "^0.21.0"
 aiofiles = "^24.0.0"
 claude-code-sdk = "^0.0.20"
+whatsapp-web-py = "^0.1.0"
+mcp = "^1.13.0"
+pydub = "^0.25.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.0"

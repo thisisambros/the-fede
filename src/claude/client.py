@@ -51,7 +51,16 @@ class ClaudeClient:
             "args": ["-y", "@gongrzhe/server-gmail-autoauth-mcp"]
         }
         
-        logger.info("Google Calendar and Gmail MCP servers enabled")
+        # Always enable WhatsApp
+        mcp_servers["whatsapp"] = {
+            "command": "poetry",
+            "args": ["run", "python", "/Users/lambrosini/IdeaProjects/the-fede/src/mcp_servers/main.py"],
+            "env": {
+                "WHATSAPP_BRIDGE_PATH": "/Users/lambrosini/bin/whatsapp-bridge"
+            }
+        }
+        
+        logger.info("Google Calendar, Gmail, and WhatsApp MCP servers enabled")
         
         return mcp_servers
     
@@ -66,8 +75,8 @@ class ClaudeClient:
         """
         mcp_servers = self._build_mcp_servers()
         
-        # Always allow Google Calendar and Gmail tools
-        allowed_tools = ["mcp__google-calendar", "mcp__gmail"]
+        # Always allow Google Calendar, Gmail, and WhatsApp tools
+        allowed_tools = ["mcp__google-calendar", "mcp__gmail", "mcp__whatsapp"]
         
         return ClaudeCodeOptions(
             system_prompt=get_conversation_prompt(context),

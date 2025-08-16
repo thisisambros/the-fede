@@ -102,6 +102,7 @@ class MessageHandlers:
 *Available Integrations:*
 • ✅ Google Calendar - List and manage events
 • ✅ Gmail - Read and manage emails
+• ✅ WhatsApp - Read and send messages
 
 *Upcoming:*
 • Custom todo list
